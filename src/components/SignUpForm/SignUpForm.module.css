@@ -1,0 +1,14 @@
+.container {
+  margin-top: 150px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #d6d6d6;
+  box-shadow: 0 20px 30px rgba(0,0,0,.25);
+}
+
+.button {
+  width: 141px;
+  height: 36px;
+}
