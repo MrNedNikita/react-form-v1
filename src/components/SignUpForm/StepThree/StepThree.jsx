@@ -8,22 +8,51 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const StepThree = () => {
   return (
-    <div className="step3 df">
-      <FormGroup>
-        <TextField id="standard-basic" label="First Name" variant="standard" />
-        <TextField id="standard-basic" label="Last Name" variant="standard" />
-        <TextField id="standard-basic" label="Company Name" variant="standard" />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="I agree to the terms and conditions."
+    <FormGroup>
+      <div className={s.container}>
+        <div>
+          <TextField
+            id="standard-basic"
+            label="First Name"
+            variant="standard"
+            sx={{ width: 142, marginRight: 4 }}
+          />
+          <TextField
+            id="standard-basic"
+            label="Last Name"
+            variant="standard"
+            sx={{ width: 142 }}
+          />
+        </div>
+        <TextField
+          id="standard-basic"
+          label="Company"
+          variant="standard"
+          sx={{ width: 316, margin: 2 }}
         />
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
+          control={<Checkbox />}
+          label="I agree to the terms and conditions."
+          sx={{
+            "& .MuiFormControlLabel-label": {
+              fontSize: 12,
+              color: "#8f8f8f",
+            }
+          }}
+        />
+        <FormControlLabel
+          control={<Checkbox />}
           label="I agree to receive information about XOVI and its partners via email."
+          sx={{
+            "& .MuiFormControlLabel-label": {
+              fontSize: 12,
+              color: "#8f8f8f",
+            }
+          }}
         />
         <Button className={s.button} variant="contained">Register</Button>
-      </FormGroup>
-    </div>
+      </div>
+    </FormGroup>
   );
 };
 

@@ -7,9 +7,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import StepOne from './StepOne/StepOne.jsx';
-import StepTwo from './StepTwo/StepTwo.jsx';
-import StepThree from './StepThree/StepThree.jsx';
+import StepOne from './StepOne/StepOne';
+import StepTwo from './StepTwo/StepTwo';
+import StepThree from './StepThree/StepThree';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,8 +73,8 @@ function SignUpForm() {
       <TabPanel value={tabValue} index={2} dir={theme.direction}>
         <StepThree />
       </TabPanel>
-    </Container >
+    </Container>
   );
-};
+}
 
 export default SignUpForm;
