@@ -12,20 +12,20 @@ const StepThree = () => {
       <div className={s.container}>
         <div>
           <TextField
-            id="standard-basic"
+            id="firstName"
             label="First Name"
             variant="standard"
             sx={{ width: 142, marginRight: 4 }}
           />
           <TextField
-            id="standard-basic"
+            id="lastName"
             label="Last Name"
             variant="standard"
             sx={{ width: 142 }}
           />
         </div>
         <TextField
-          id="standard-basic"
+          id="company"
           label="Company"
           variant="standard"
           sx={{ width: 316, margin: 2 }}

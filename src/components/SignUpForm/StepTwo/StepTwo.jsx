@@ -29,20 +29,20 @@ const StepTwo = () => {
       <div className={s.container}>
         <span className={s.text}>What website would you like to analyze first?</span>
         <TextField
-          id="standard-basic"
+          id="domain"
           label="Domain (domain.com)"
           variant="standard"
           sx={{
             width: 314,
-            input: {textAlign: "center"},
+            "& .MuiInputBase-input": { textAlign: "center" },
             "& label": {
               width: "100%",
               textAlign: "center",
               transformOrigin: "center",
-                "&.Mui-focused": {
-                  transformOrigin: "center"
-                }
-             }
+            },
+            "& label.Mui-focused": {
+              transformOrigin: "center",
+            },
           }}
         />
         <div>

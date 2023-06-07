@@ -9,42 +9,42 @@ const StepOne = () => {
       <div className={s.container}>
         <span className={s.text}>Start your free 14 days trial - no cancellation required!</span>
         <TextField 
-          id="standard-basic" 
-          label="Email Address" 
-          variant="standard" 
+          id="email"
+          label="Email Address"
+          variant="standard"
           sx={{
             width: 314,
-            input: {textAlign: "center"},
+            "& .MuiInputBase-input": { textAlign: "center" },
             "& label": {
               width: "100%",
               textAlign: "center",
               transformOrigin: "center",
-                "&.Mui-focused": {
-                  transformOrigin: "center"
-                }
-             }
+            },
+            "& label.Mui-focused": {
+              transformOrigin: "center",
+            },
           }}
         />
         <span className={s.text}>Find out how to optimize your website with XOVI:</span>
         <TextField
-          id="standard-basic"
+          id="telephone"
           label="Telephone Number"
           variant="standard"
           type="number"
           sx={{
             width: 314,
-            input: {textAlign: "center"},
+            "& .MuiInputBase-input": { textAlign: "center" },
             "& label": {
               width: "100%",
               textAlign: "center",
               transformOrigin: "center",
-                "&.Mui-focused": {
-                  transformOrigin: "center"
-                }
-             }
+            },
+            "& label.Mui-focused": {
+              transformOrigin: "center",
+            },
           }}
         />
-        <span className={s.text}>XOVI GmbH will process your provided data to process your request in accordance to its Privacy Policy.</span>
+        <span className={s.text}>XOVI GmbH will process your provided data to process your request in accordance with its Privacy Policy.</span>
         <Button className={s.button} variant="contained">Step 2 &gt;</Button>
       </div>
     </form>
