@@ -7,15 +7,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import StepOne from './StepOne/StepOne.jsx';
+import StepTwo from './StepTwo/StepTwo.jsx';
+import StepThree from './StepThree/StepThree.jsx';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,23 +43,18 @@ function a11yProps(index) {
 
 function SignUpForm() {
   const theme = useTheme();
-  const [value, setValue] = React.useState(0);
-  const [age, setAge] = React.useState('');
+  const [tabValue, setTabValue] = React.useState(0);
 
-  const handleSelectChange = (event) => {
-    setAge(event.target.value);
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleTabChange = (event, newValue) => {
+    setTabValue(newValue);
   };
 
   return (
     <Container maxWidth="xs" className={s.container}>
       <h1>Register</h1>
       <Tabs
-        value={value}
-        onChange={handleChange}
+        value={tabValue}
+        onChange={handleTabChange}
         indicatorColor="primary"
         textColor="primary"
         variant="fullWidth"
@@ -75,86 +64,14 @@ function SignUpForm() {
         <Tab label="2" {...a11yProps(1)} />
         <Tab label="3" {...a11yProps(2)} />
       </Tabs>
-
-      <TabPanel value={value} index={0} dir={theme.direction}>
-        <div className="step1">
-          <h4>Start your free 14 days trial - no cancellation required!</h4>
-          <form>
-            <input type="text" placeholder="Email" />
-            <input type="number" placeholder="Number" />
-            <Button className={s.button} variant="contained">Register</Button>
-          </form>
-        </div>
+      <TabPanel value={tabValue} index={0} dir={theme.direction}>
+        <StepOne />
       </TabPanel>
-
-      <TabPanel value={value} index={1} dir={theme.direction}>
-        <div className="step2">
-          <h4>What website would you like to analyze first?</h4>
-          <form>
-            <input type="text" placeholder="Domain" />
-            <div>
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="seoFor">I do SEO for</InputLabel>
-                <Select
-                  labelId="seoFor"
-                  id="seoFor"
-                  value={age}
-                  onChange={handleSelectChange}
-                  label="seoFor"
-                >
-                  <MenuItem value={10}>In-house SEO</MenuItem>
-                  <MenuItem value={20}>Agency</MenuItem>
-                  <MenuItem value={30}>E-Commerce</MenuItem>
-                </Select>
-              </FormControl>
-              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="seoFor">I do SEO for</InputLabel>
-                <Select
-                  labelId="seoFor"
-                  id="seoFor"
-                  value='seoFor'
-                  onChange={handleChange}
-                  label="seoFor"
-                >
-                  <MenuItem value={10}>In-house SEO</MenuItem>
-                  <MenuItem value={20}>Agency</MenuItem>
-                  <MenuItem value={30}>E-Commerce</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            <Select
-              labelId="seoFor"
-              id="seoFor"
-              value='seoFor'
-              onChange={handleChange}
-              label="seoFor"
-            >
-              <MenuItem value={10}>In-house SEO</MenuItem>
-              <MenuItem value={20}>Agency</MenuItem>
-              <MenuItem value={30}>E-Commerce</MenuItem>
-            </Select>
-            <Button className={s.button} variant="contained">Register</Button>
-          </form>
-        </div>
+      <TabPanel value={tabValue} index={1} dir={theme.direction}>
+        <StepTwo />
       </TabPanel>
-
-      <TabPanel value={value} index={2} dir={theme.direction}>
-        <div className="step3 df">
-          <FormGroup>
-            <TextField id="standard-basic" label="First Name" variant="standard" />
-            <TextField id="standard-basic" label="Last Name" variant="standard" />
-            <TextField id="standard-basic" label="Company Name" variant="standard" />
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              label="I agree to the terms and conditions."
-            />
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              label="I agree to receive information about XOVI and its partners via email."
-            />
-            <Button className={s.button} variant="contained">Register</Button>
-          </FormGroup>
-        </div>
+      <TabPanel value={tabValue} index={2} dir={theme.direction}>
+        <StepThree />
       </TabPanel>
     </Container >
   );
