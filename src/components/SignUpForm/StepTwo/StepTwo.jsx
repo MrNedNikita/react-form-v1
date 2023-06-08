@@ -7,13 +7,27 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from 'react-hot-toast';
 
 const StepTwo = ({ handleTabChange }) => {
   const [seoFor, setSeoFor] = React.useState('');
   const [seoLevel, setSeoLevel] = React.useState('');
   const [seoTools, setSeoTools] = React.useState('');
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm();
+
+  const handleSubmitClick = () => {
+    try {
+      if (isValid) {
+        onSubmit();
+      } else {
+        toast.error('Please fill out all required fields.');
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
   const onSubmit = (data) => {
     handleTabChange('', 2);
     console.log(data);
@@ -111,6 +125,7 @@ const StepTwo = ({ handleTabChange }) => {
           className={s.button}
           variant="contained"
           type="submit"
+          onClick={handleSubmitClick}
           sx={{
             width: 145,
             borderRadius: 12,
@@ -123,6 +138,10 @@ const StepTwo = ({ handleTabChange }) => {
           Step 3 &gt;
         </Button>
       </div>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
     </form>
   );
 };

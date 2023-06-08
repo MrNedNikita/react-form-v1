@@ -4,13 +4,26 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from 'react-hot-toast';
 
 const StepOne = ({ handleTabChange }) => {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm();
+
+  const handleSubmitClick = () => {
+    try {
+      if (isValid) {
+        onSubmit();
+      } else {
+        toast.error('Please fill out all required fields.');
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
   const onSubmit = (data) => {
     handleTabChange('', 1);
     console.log(data);
-    console.log(errors);
   }
 
   return (
@@ -75,6 +88,7 @@ const StepOne = ({ handleTabChange }) => {
           className={s.button}
           variant="contained"
           type="submit"
+          onClick={handleSubmitClick}
           sx={{
             width: 145,
             borderRadius: 12,
@@ -86,6 +100,10 @@ const StepOne = ({ handleTabChange }) => {
         >
           Step 2 &gt;
         </Button>
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+        />
       </Box>
     </form>
   );
