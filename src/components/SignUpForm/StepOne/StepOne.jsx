@@ -2,19 +2,21 @@ import React from 'react';
 import s from './StepOne.module.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import FormGroup from '@mui/material/FormGroup';
+import Box from '@mui/material/Box';
 
 const StepOne = () => {
   return (
-    <form>
-      <div className={s.container}>
+    <FormGroup>
+      <Box className={s.container}>
         <span className={s.text}>Start your free 14 days trial - no cancellation required!</span>
-        <TextField 
+        <TextField
           id="email"
           label="Email Address"
           variant="standard"
           sx={{
             width: 314,
-            "& .MuiInputBase-input": { textAlign: "center" },
+            "& .MuiInputBase-input": { textAlign: "center", },
             "& label": {
               width: "100%",
               textAlign: "center",
@@ -22,6 +24,10 @@ const StepOne = () => {
             },
             "& label.Mui-focused": {
               transformOrigin: "center",
+              color: 'orange',
+            },
+            "& .Mui-focused:after": {
+              borderBottom: '2px solid orange'
             },
           }}
         />
@@ -41,19 +47,30 @@ const StepOne = () => {
             },
             "& label.Mui-focused": {
               transformOrigin: "center",
+              color: 'orange',
+            },
+            "& .Mui-focused:after": {
+              borderBottom: '2px solid orange'
             },
           }}
         />
         <span className={s.text}>XOVI GmbH will process your provided data to process your request in accordance with its Privacy Policy.</span>
-        <Button 
-          className={s.button} 
+        <Button
+          className={s.button}
           variant="contained"
-          sx={{ width: 145, borderRadius: 12, mt: 1 }}
+          sx={{
+            width: 145,
+            borderRadius: 12,
+            mt: 1,
+            fontWeight: '700',
+            background: "linear-gradient(135deg,#fda822,#f38031)",
+            color: "#fff"
+          }}
         >
           Step 2 &gt;
         </Button>
-      </div>
-    </form>
+      </Box>
+    </FormGroup>
   );
 };
 

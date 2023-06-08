@@ -6,6 +6,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
+import FormGroup from '@mui/material/FormGroup';
 
 const StepTwo = () => {
   const [seoFor, setSeoFor] = React.useState('');
@@ -25,7 +26,7 @@ const StepTwo = () => {
   };
 
   return (
-    <form>
+    <FormGroup>
       <div className={s.container}>
         <span className={s.text}>What website would you like to analyze first?</span>
         <TextField
@@ -42,6 +43,10 @@ const StepTwo = () => {
             },
             "& label.Mui-focused": {
               transformOrigin: "center",
+              color: 'orange',
+            },
+            "& .Mui-focused:after": {
+              borderBottom: '2px solid orange'
             },
           }}
         />
@@ -95,12 +100,19 @@ const StepTwo = () => {
         <Button 
           className={s.button} 
           variant="contained"
-          sx={{ width: 145, borderRadius: 12, mt: 3 }}
+          sx={{ 
+            width: 145, 
+            borderRadius: 12, 
+            mt: 1, 
+            fontWeight: '700',
+            background: "linear-gradient(135deg,#fda822,#f38031)", 
+            color: "#fff" 
+          }}
         >
           Step 3 &gt;
         </Button>
       </div>
-    </form>
+    </FormGroup>
   );
 };
 

@@ -15,20 +15,47 @@ const StepThree = () => {
             id="firstName"
             label="First Name"
             variant="standard"
-            sx={{ width: 142, marginRight: 4 }}
+            sx={{
+              width: 142, marginRight: 4,
+              "& label.Mui-focused": {
+                transformOrigin: "center",
+                color: 'orange',
+              },
+              "& .Mui-focused:after": {
+                borderBottom: '2px solid orange'
+              },
+            }}
           />
           <TextField
             id="lastName"
             label="Last Name"
             variant="standard"
-            sx={{ width: 142 }}
+            sx={{
+              width: 142,
+              "& label.Mui-focused": {
+                transformOrigin: "center",
+                color: 'orange',
+              },
+              "& .Mui-focused:after": {
+                borderBottom: '2px solid orange'
+              },
+            }}
           />
         </div>
         <TextField
           id="company"
           label="Company"
           variant="standard"
-          sx={{ width: 316, margin: 2 }}
+          sx={{
+            width: 316, margin: 2,
+            "& label.Mui-focused": {
+              transformOrigin: "center",
+              color: 'orange',
+            },
+            "& .Mui-focused:after": {
+              borderBottom: '2px solid orange'
+            },
+          }}
         />
         <div className={s.checkboxesContainer}>
           <FormControlLabel
@@ -48,14 +75,21 @@ const StepThree = () => {
               "& .MuiFormControlLabel-label": {
                 fontSize: 12,
                 color: "#8f8f8f",
-              }, 
+              },
             }}
           />
         </div>
         <Button
           className={s.button}
           variant="contained"
-          sx={{ width: 145, borderRadius: 12, mt: 3 }}
+          sx={{
+            width: 145,
+            borderRadius: 12,
+            mt: 1,
+            fontWeight: '700',
+            background: "linear-gradient(135deg,#fda822,#f38031)",
+            color: "#fff"
+          }}
         >
           Register
         </Button>

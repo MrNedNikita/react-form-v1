@@ -11,6 +11,7 @@ import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
 import styled from '@mui/material/styles/styled';
+import { createTheme } from '@mui/material/styles';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,7 +74,6 @@ function SignUpForm() {
       textTransform: 'none',
       fontWeight: '800',
       fontSize: '12px',
-      marginRight: '32px',
       borderRadius: '50px',
       minWidth: '26px',
       maxWidth: '26px',
@@ -82,6 +82,9 @@ function SignUpForm() {
       padding: '0',
       border: '1px solid #bbb',
       overflow: 'visible',
+      '&.line': {
+        marginRight: '32px',
+      },
       '&.line:after': {
         content: '""',
         position: 'absolute',
@@ -103,7 +106,7 @@ function SignUpForm() {
 
   return (
     <Container maxWidth="xs" className={s.container}>
-      <h1>Register</h1>
+      <h1 className={s.title}>Register</h1>
       <StyledTabs
         value={tabValue}
         onChange={handleTabChange}
