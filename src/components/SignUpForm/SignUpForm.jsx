@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
+import styled from '@mui/material/styles/styled';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,10 +50,61 @@ function SignUpForm() {
     setTabValue(newValue);
   };
 
+  const StyledTabs = styled((props) => (
+    <Tabs
+      {...props}
+      TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+    />
+  ))({
+    display: 'flex',
+    alignItems: 'center',
+    '& .MuiTabs-flexContainer': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    '& .MuiTabs-indicator': {
+      display: 'none',
+    },
+  });
+
+  const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+    ({ theme }) => ({
+      textTransform: 'none',
+      fontWeight: '800',
+      fontSize: '12px',
+      marginRight: '32px',
+      borderRadius: '50px',
+      minWidth: '26px',
+      maxWidth: '26px',
+      minHeight: '26px',
+      maxHeight: '26px',
+      padding: '0',
+      border: '1px solid #bbb',
+      overflow: 'visible',
+      '&.line:after': {
+        content: '""',
+        position: 'absolute',
+        width: '22px',
+        height: '1px',
+        backgroundColor: '#bbb',
+        left: 'calc(100% + 6px)',
+      },
+      '&.Mui-selected': {
+        color: '#fff',
+        backgroundColor: 'orange',
+        border: 'none',
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: 'rgba(100, 95, 228, 0.32)',
+      },
+    }),
+  );
+
   return (
     <Container maxWidth="xs" className={s.container}>
       <h1>Register</h1>
-      <Tabs
+      <StyledTabs
         value={tabValue}
         onChange={handleTabChange}
         indicatorColor="primary"
@@ -60,10 +112,10 @@ function SignUpForm() {
         variant="fullWidth"
         aria-label="action tabs example"
       >
-        <Tab label="1" {...a11yProps(0)} />
-        <Tab label="2" {...a11yProps(1)} />
-        <Tab label="3" {...a11yProps(2)} />
-      </Tabs>
+        <StyledTab className='line' label="1" {...a11yProps(0)} />
+        <StyledTab className='line' label="2" {...a11yProps(1)} />
+        <StyledTab label="3" {...a11yProps(2)} />
+      </StyledTabs>
       <TabPanel value={tabValue} index={0} dir={theme.direction}>
         <StepOne />
       </TabPanel>

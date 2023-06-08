@@ -45,7 +45,13 @@ const StepOne = () => {
           }}
         />
         <span className={s.text}>XOVI GmbH will process your provided data to process your request in accordance with its Privacy Policy.</span>
-        <Button className={s.button} variant="contained">Step 2 &gt;</Button>
+        <Button 
+          className={s.button} 
+          variant="contained"
+          sx={{ width: 145, borderRadius: 12, mt: 1 }}
+        >
+          Step 2 &gt;
+        </Button>
       </div>
     </form>
   );

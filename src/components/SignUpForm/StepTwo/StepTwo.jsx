@@ -92,7 +92,13 @@ const StepTwo = () => {
             <MenuItem value={20}>No</MenuItem>
           </Select>
         </FormControl>
-        <Button className={s.button} variant="contained">Step 3</Button>
+        <Button 
+          className={s.button} 
+          variant="contained"
+          sx={{ width: 145, borderRadius: 12, mt: 3 }}
+        >
+          Step 3 &gt;
+        </Button>
       </div>
     </form>
   );

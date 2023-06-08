@@ -30,27 +30,35 @@ const StepThree = () => {
           variant="standard"
           sx={{ width: 316, margin: 2 }}
         />
-        <FormControlLabel
-          control={<Checkbox />}
-          label="I agree to the terms and conditions."
-          sx={{
-            "& .MuiFormControlLabel-label": {
-              fontSize: 12,
-              color: "#8f8f8f",
-            }
-          }}
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          label="I agree to receive information about XOVI and its partners via email."
-          sx={{
-            "& .MuiFormControlLabel-label": {
-              fontSize: 12,
-              color: "#8f8f8f",
-            }
-          }}
-        />
-        <Button className={s.button} variant="contained">Register</Button>
+        <div className={s.checkboxesContainer}>
+          <FormControlLabel
+            control={<Checkbox />}
+            label="I agree to the terms and conditions."
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: 12,
+                color: "#8f8f8f",
+              }
+            }}
+          />
+          <FormControlLabel
+            control={<Checkbox />}
+            label="I agree to receive information about XOVI and its partners via email."
+            sx={{
+              "& .MuiFormControlLabel-label": {
+                fontSize: 12,
+                color: "#8f8f8f",
+              }, 
+            }}
+          />
+        </div>
+        <Button
+          className={s.button}
+          variant="contained"
+          sx={{ width: 145, borderRadius: 12, mt: 3 }}
+        >
+          Register
+        </Button>
       </div>
     </FormGroup>
   );

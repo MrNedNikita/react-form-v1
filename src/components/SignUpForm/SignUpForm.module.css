@@ -12,3 +12,12 @@
   width: 141px;
   height: 36px;
 }
+
+.tab.MuiButtonBase-root::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 1px;
+  background-color: #bbb;
+  left: calc(100% + 6px);
+}
