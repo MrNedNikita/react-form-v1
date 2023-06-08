@@ -6,12 +6,19 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
-import FormGroup from '@mui/material/FormGroup';
+import { useForm } from "react-hook-form";
 
-const StepTwo = () => {
+const StepTwo = ({ handleTabChange }) => {
   const [seoFor, setSeoFor] = React.useState('');
   const [seoLevel, setSeoLevel] = React.useState('');
   const [seoTools, setSeoTools] = React.useState('');
+
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = (data) => {
+    handleTabChange('', 2);
+    console.log(data);
+    console.log(errors);
+  }
 
   const handleSeoForChange = (event) => {
     setSeoFor(event.target.value);
@@ -26,13 +33,16 @@ const StepTwo = () => {
   };
 
   return (
-    <FormGroup>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={s.container}>
         <span className={s.text}>What website would you like to analyze first?</span>
         <TextField
           id="domain"
           label="Domain (domain.com)"
           variant="standard"
+          {...register("domain", { required: "Domain is required." })}
+          error={Boolean(errors.domain)}
+          helperText={errors.domain?.message}
           sx={{
             width: 314,
             "& .MuiInputBase-input": { textAlign: "center" },
@@ -97,22 +107,23 @@ const StepTwo = () => {
             <MenuItem value={20}>No</MenuItem>
           </Select>
         </FormControl>
-        <Button 
-          className={s.button} 
+        <Button
+          className={s.button}
           variant="contained"
-          sx={{ 
-            width: 145, 
-            borderRadius: 12, 
-            mt: 1, 
+          type="submit"
+          sx={{
+            width: 145,
+            borderRadius: 12,
+            mt: 1,
             fontWeight: '700',
-            background: "linear-gradient(135deg,#fda822,#f38031)", 
-            color: "#fff" 
+            background: "linear-gradient(135deg,#fda822,#f38031)",
+            color: "#fff"
           }}
         >
           Step 3 &gt;
         </Button>
       </div>
-    </FormGroup>
+    </form>
   );
 };
 

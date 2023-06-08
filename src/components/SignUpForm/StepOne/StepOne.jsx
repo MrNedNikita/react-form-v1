@@ -2,18 +2,34 @@ import React from 'react';
 import s from './StepOne.module.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormGroup from '@mui/material/FormGroup';
 import Box from '@mui/material/Box';
+import { useForm } from "react-hook-form";
 
-const StepOne = () => {
+const StepOne = ({ handleTabChange }) => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = (data) => {
+    handleTabChange('', 1);
+    console.log(data);
+    console.log(errors);
+  }
+
   return (
-    <FormGroup>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Box className={s.container}>
         <span className={s.text}>Start your free 14 days trial - no cancellation required!</span>
         <TextField
           id="email"
           label="Email Address"
           variant="standard"
+          {...register("email", {
+            required: 'Email is required.',
+            pattern: {
+              value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Please enter a valid email',
+            },
+          })}
+          error={Boolean(errors.email)}
+          helperText={errors.email?.message}
           sx={{
             width: 314,
             "& .MuiInputBase-input": { textAlign: "center", },
@@ -58,6 +74,7 @@ const StepOne = () => {
         <Button
           className={s.button}
           variant="contained"
+          type="submit"
           sx={{
             width: 145,
             borderRadius: 12,
@@ -70,7 +87,7 @@ const StepOne = () => {
           Step 2 &gt;
         </Button>
       </Box>
-    </FormGroup>
+    </form>
   );
 };
 

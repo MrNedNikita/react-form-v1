@@ -48,6 +48,7 @@ function SignUpForm() {
   const [tabValue, setTabValue] = React.useState(0);
 
   const handleTabChange = (event, newValue) => {
+    console.log(newValue );
     setTabValue(newValue);
   };
 
@@ -120,10 +121,10 @@ function SignUpForm() {
         <StyledTab label="3" {...a11yProps(2)} />
       </StyledTabs>
       <TabPanel value={tabValue} index={0} dir={theme.direction}>
-        <StepOne />
+        <StepOne handleTabChange={handleTabChange}/>
       </TabPanel>
       <TabPanel value={tabValue} index={1} dir={theme.direction}>
-        <StepTwo />
+        <StepTwo handleTabChange={handleTabChange}/>
       </TabPanel>
       <TabPanel value={tabValue} index={2} dir={theme.direction}>
         <StepThree />
