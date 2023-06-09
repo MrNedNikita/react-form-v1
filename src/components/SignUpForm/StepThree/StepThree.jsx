@@ -1,37 +1,42 @@
-import React from 'react';
-import s from './StepThree.module.css';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import React from "react";
+import s from "./StepThree.module.css";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import { useForm } from "react-hook-form";
-import toast, { Toaster } from 'react-hot-toast';
-import axios from 'axios';
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const StepThree = ({ formData, handleInputChange }) => {
-  const { register, handleSubmit, formState: { errors, isValid } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm();
 
   const handleSubmitClick = () => {
     try {
       if (isValid) {
         onSubmit();
       } else {
-        toast.error('Please fill out all required fields.');
+        toast.error("Please fill out all required fields.");
       }
     } catch (error) {
       return;
     }
-  }
+  };
 
   const onSubmit = (data) => {
     axios
-     .post(
-        'https://suite.xovi.net/spa/user/register',
-        formData,
-      )
-     .then(response => {console.log(response.data)})
-     .catch(error => {console.log(error.data)});
- };
+      .post("https://suite.xovi.net/spa/user/register", formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -39,7 +44,7 @@ const StepThree = ({ formData, handleInputChange }) => {
         <div>
           <TextField
             id="firstName"
-            name='firstName'
+            name="firstName"
             label="First Name"
             variant="standard"
             defaultValue={formData.firstName}
@@ -47,19 +52,20 @@ const StepThree = ({ formData, handleInputChange }) => {
             error={Boolean(errors.firstName)}
             helperText={errors.firstName?.message}
             sx={{
-              width: 142, marginRight: 4,
+              width: 142,
+              marginRight: 4,
               "& label.Mui-focused": {
                 transformOrigin: "center",
-                color: 'orange',
+                color: "orange",
               },
               "& .Mui-focused:after": {
-                borderBottom: '2px solid orange'
+                borderBottom: "2px solid orange",
               },
             }}
           />
           <TextField
             id="lastName"
-            name='lastName'
+            name="lastName"
             label="Last Name"
             variant="standard"
             defaultValue={formData.lastName}
@@ -70,47 +76,54 @@ const StepThree = ({ formData, handleInputChange }) => {
               width: 142,
               "& label.Mui-focused": {
                 transformOrigin: "center",
-                color: 'orange',
+                color: "orange",
               },
               "& .Mui-focused:after": {
-                borderBottom: '2px solid orange'
+                borderBottom: "2px solid orange",
               },
             }}
           />
         </div>
         <TextField
-          id="company" 
-          name='companyName'
+          id="company"
+          name="companyName"
           label="Company"
           variant="standard"
           defaultValue={formData.companyName}
-          {...register("companyName", { required: "Company Name is required." })}
+          {...register("companyName", {
+            required: "Company Name is required.",
+          })}
           error={Boolean(errors.companyName)}
           helperText={errors.companyName?.message}
           sx={{
-            width: 316, margin: 2,
+            width: 316,
+            margin: 2,
             "& label.Mui-focused": {
               transformOrigin: "center",
-              color: 'orange',
+              color: "orange",
             },
             "& .Mui-focused:after": {
-              borderBottom: '2px solid orange'
+              borderBottom: "2px solid orange",
             },
           }}
         />
         <div className={s.checkboxesContainer}>
-        {/* value={option.id} */}
+          {/* value={option.id} */}
           <FormControlLabel
-            control={<Checkbox 
-              name="tnc" 
-              {...register("tnc", { required: "Please agree to the terms and conditions." })} 
-            />}
+            control={
+              <Checkbox
+                name="tnc"
+                {...register("tnc", {
+                  required: "Please agree to the terms and conditions.",
+                })}
+              />
+            }
             label="I agree to the terms and conditions."
             sx={{
               "& .MuiFormControlLabel-label": {
                 fontSize: 12,
                 color: "#8f8f8f",
-              }
+              },
             }}
           />
           <FormControlLabel
@@ -133,18 +146,15 @@ const StepThree = ({ formData, handleInputChange }) => {
             width: 145,
             borderRadius: 12,
             mt: 1,
-            fontWeight: '700',
+            fontWeight: "700",
             background: "linear-gradient(135deg,#fda822,#f38031)",
-            color: "#fff"
+            color: "#fff",
           }}
         >
           Register
         </Button>
       </div>
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-      />
+      <Toaster position="top-right" reverseOrder={false} />
     </form>
   );
 };

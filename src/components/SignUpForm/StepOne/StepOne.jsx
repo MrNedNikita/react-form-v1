@@ -5,10 +5,8 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
-// { formData, handleInputChange, handleTabChange }
-const StepOne = (props) => {
-  console.log(props);
 
+const StepOne = ({ formData, handleInputChange, handleTabChange }) => {
   const {
     register,
     handleSubmit,
@@ -28,7 +26,7 @@ const StepOne = (props) => {
   };
 
   const onSubmit = (data) => {
-    props.handleTabChange("", 1);
+    handleTabChange("", 1);
   };
 
   return (
@@ -42,8 +40,8 @@ const StepOne = (props) => {
           label="Email Address"
           variant="standard"
           type="text"
-          defaultValue={props.formData.email}
-          onChange={(e) => props.handleInputChange(e)}
+          defaultValue={formData.email}
+          onChange={(e) => handleInputChange(e)}
           {...register("email", {
             required: "Email is required.",
             pattern: {
@@ -79,8 +77,8 @@ const StepOne = (props) => {
           label="Telephone Number"
           variant="standard"
           type="number"
-          defaultValue={props.formData.phoneNumber}
-          onChange={(e) => props.handleInputChange(e)}
+          defaultValue={formData.phoneNumber}
+          onChange={(e) => handleInputChange(e)}
           sx={{
             width: 314,
             "& .MuiInputBase-input": { textAlign: "center" },

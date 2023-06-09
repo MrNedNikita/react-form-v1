@@ -1,16 +1,16 @@
-import React from 'react';
-import s from './SignUpForm.module.css';
-import Container from '@mui/material/Container';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import StepOne from './StepOne/StepOne';
-import StepTwo from './StepTwo/StepTwo';
-import StepThree from './StepThree/StepThree';
-import styled from '@mui/material/styles/styled';
+import React from "react";
+import s from "./SignUpForm.module.css";
+import Container from "@mui/material/Container";
+import PropTypes from "prop-types";
+import { useTheme } from "@mui/material/styles";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import StepOne from "./StepOne/StepOne";
+import StepTwo from "./StepTwo/StepTwo";
+import StepThree from "./StepThree/StepThree";
+import styled from "@mui/material/styles/styled";
 // import { createTheme } from '@mui/material/styles';
 
 function TabPanel(props) {
@@ -39,7 +39,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `action-tab-${index}`,
-    'aria-controls': `action-tabpanel-${index}`,
+    "aria-controls": `action-tabpanel-${index}`,
   };
 }
 
@@ -47,15 +47,15 @@ function SignUpForm() {
   const theme = useTheme();
   const [tabValue, setTabValue] = React.useState(0);
   const [formData, setFormData] = React.useState({
-    email: '',
-    phoneNumber: '',
-    domain: '',
-    seoFor: '',
-    seoLevel: '',
-    seoTools: '',
-    firstName: '',
-    lastName: '',
-    companyName: '',
+    email: "",
+    phoneNumber: "",
+    domain: "",
+    seoFor: "",
+    seoLevel: "",
+    seoTools: "",
+    firstName: "",
+    lastName: "",
+    companyName: "",
   });
 
   const handleInputChange = (event) => {
@@ -71,54 +71,56 @@ function SignUpForm() {
   const StyledTabs = styled((props) => (
     <Tabs
       {...props}
-      TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+      TabIndicatorProps={{
+        children: <span className="MuiTabs-indicatorSpan" />,
+      }}
     />
   ))({
-    display: 'flex',
-    alignItems: 'center',
-    '& .MuiTabs-flexContainer': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
+    "& .MuiTabs-flexContainer": {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
-    '& .MuiTabs-indicator': {
-      display: 'none',
+    "& .MuiTabs-indicator": {
+      display: "none",
     },
   });
 
   const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     ({ theme }) => ({
-      textTransform: 'none',
-      fontWeight: '800',
-      fontSize: '12px',
-      borderRadius: '50px',
-      minWidth: '26px',
-      maxWidth: '26px',
-      minHeight: '26px',
-      maxHeight: '26px',
-      padding: '0',
-      border: '1px solid #bbb',
-      overflow: 'visible',
-      '&.line': {
-        marginRight: '32px',
+      textTransform: "none",
+      fontWeight: "800",
+      fontSize: "12px",
+      borderRadius: "50px",
+      minWidth: "26px",
+      maxWidth: "26px",
+      minHeight: "26px",
+      maxHeight: "26px",
+      padding: "0",
+      border: "1px solid #bbb",
+      overflow: "visible",
+      "&.line": {
+        marginRight: "32px",
       },
-      '&.line:after': {
+      "&.line:after": {
         content: '""',
-        position: 'absolute',
-        width: '22px',
-        height: '1px',
-        backgroundColor: '#bbb',
-        left: 'calc(100% + 6px)',
+        position: "absolute",
+        width: "22px",
+        height: "1px",
+        backgroundColor: "#bbb",
+        left: "calc(100% + 6px)",
       },
-      '&.Mui-selected': {
-        color: '#fff',
-        backgroundColor: 'orange',
-        border: 'none',
+      "&.Mui-selected": {
+        color: "#fff",
+        backgroundColor: "orange",
+        border: "none",
       },
-      '&.Mui-focusVisible': {
-        backgroundColor: 'rgba(100, 95, 228, 0.32)',
+      "&.Mui-focusVisible": {
+        backgroundColor: "rgba(100, 95, 228, 0.32)",
       },
-    }),
+    })
   );
 
   return (
@@ -132,8 +134,8 @@ function SignUpForm() {
         variant="fullWidth"
         aria-label="action tabs example"
       >
-        <StyledTab className='line' label="1" {...a11yProps(0)} />
-        <StyledTab className='line' label="2" {...a11yProps(1)} />
+        <StyledTab className="line" label="1" {...a11yProps(0)} />
+        <StyledTab className="line" label="2" {...a11yProps(1)} />
         <StyledTab label="3" {...a11yProps(2)} />
       </StyledTabs>
       <TabPanel value={tabValue} index={0} dir={theme.direction}>
