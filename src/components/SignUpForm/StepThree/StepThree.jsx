@@ -6,9 +6,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
 
-const StepThree = () => {
-  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm();
+const StepThree = ({ formData, handleInputChange }) => {
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm();
 
   const handleSubmitClick = () => {
     try {
@@ -22,10 +23,15 @@ const StepThree = () => {
     }
   }
 
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(errors);
-  }
+  const onSubmit = data => {
+    axios
+     .post(
+         'http://localhost:8000/tran',
+         data,
+      )
+     .then(response => {console.log(response.data)})
+     .catch(error => {console.log(error.data)});
+ };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,8 +39,10 @@ const StepThree = () => {
         <div>
           <TextField
             id="firstName"
+            name='firstName'
             label="First Name"
             variant="standard"
+            defaultValue={formData.firstName}
             {...register("firstName", { required: "First Name is required." })}
             error={Boolean(errors.firstName)}
             helperText={errors.firstName?.message}
@@ -51,8 +59,10 @@ const StepThree = () => {
           />
           <TextField
             id="lastName"
+            name='lastName'
             label="Last Name"
             variant="standard"
+            defaultValue={formData.lastName}
             {...register("lastName", { required: "Last Name is required." })}
             error={Boolean(errors.lastName)}
             helperText={errors.lastName?.message}
@@ -69,9 +79,11 @@ const StepThree = () => {
           />
         </div>
         <TextField
-          id="company"
+          id="company" 
+          name='companyName'
           label="Company"
           variant="standard"
+          defaultValue={formData.companyName}
           {...register("companyName", { required: "Company Name is required." })}
           error={Boolean(errors.companyName)}
           helperText={errors.companyName?.message}

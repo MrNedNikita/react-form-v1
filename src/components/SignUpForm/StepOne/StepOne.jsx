@@ -5,9 +5,11 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
+// { formData, handleInputChange, handleTabChange }
+const StepOne = (props) => {
+  console.log(props)
 
-const StepOne = ({ handleTabChange }) => {
-  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm();
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm();
 
   const handleSubmitClick = () => {
     try {
@@ -22,8 +24,7 @@ const StepOne = ({ handleTabChange }) => {
   }
 
   const onSubmit = (data) => {
-    handleTabChange('', 1);
-    console.log(data);
+    props.handleTabChange('', 1);
   }
 
   return (
@@ -31,9 +32,12 @@ const StepOne = ({ handleTabChange }) => {
       <Box className={s.container}>
         <span className={s.text}>Start your free 14 days trial - no cancellation required!</span>
         <TextField
-          id="email"
+          name="email"
           label="Email Address"
           variant="standard"
+          type="text"
+          defaultValue={props.formData.email}
+          onChange={(e) => props.handleInputChange(e)}
           {...register("email", {
             required: 'Email is required.',
             pattern: {
@@ -62,10 +66,12 @@ const StepOne = ({ handleTabChange }) => {
         />
         <span className={s.text}>Find out how to optimize your website with XOVI:</span>
         <TextField
-          id="telephone"
+          name="phoneNumber"
           label="Telephone Number"
           variant="standard"
           type="number"
+          defaultValue={props.formData.phoneNumber}
+          onChange={(e) => props.handleInputChange(e)}
           sx={{
             width: 314,
             "& .MuiInputBase-input": { textAlign: "center" },

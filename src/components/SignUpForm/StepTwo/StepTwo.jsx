@@ -9,12 +9,8 @@ import TextField from '@mui/material/TextField';
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
 
-const StepTwo = ({ handleTabChange }) => {
-  const [seoFor, setSeoFor] = React.useState('');
-  const [seoLevel, setSeoLevel] = React.useState('');
-  const [seoTools, setSeoTools] = React.useState('');
-
-  const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm();
+const StepTwo = ({ formData, handleInputChange, handleTabChange }) => {
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm();
 
   const handleSubmitClick = () => {
     try {
@@ -30,30 +26,18 @@ const StepTwo = ({ handleTabChange }) => {
 
   const onSubmit = (data) => {
     handleTabChange('', 2);
-    console.log(data);
-    console.log(errors);
   }
-
-  const handleSeoForChange = (event) => {
-    setSeoFor(event.target.value);
-  };
-
-  const handleSeoLevelChange = (event) => {
-    setSeoLevel(event.target.value);
-  };
-
-  const handleSeoToolsChange = (event) => {
-    setSeoTools(event.target.value);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={s.container}>
         <span className={s.text}>What website would you like to analyze first?</span>
         <TextField
-          id="domain"
+          name="domain"
           label="Domain (domain.com)"
           variant="standard"
+          defaultValue={formData.domain}
+          onChange={(e) => handleInputChange(e)}
           {...register("domain", { required: "Domain is required." })}
           error={Boolean(errors.domain)}
           helperText={errors.domain?.message}
@@ -80,14 +64,15 @@ const StepTwo = ({ handleTabChange }) => {
             <Select
               labelId="seoForLabel"
               id="seoFor"
-              value={seoFor}
-              onChange={handleSeoForChange}
+              name='seoFor'
+              value={formData.seoFor}
+              onChange={(e) => handleInputChange(e)}
               label="seoFor"
               sx={{ width: 142 }}
             >
-              <MenuItem value={10}>In-house SEO</MenuItem>
-              <MenuItem value={20}>Agency</MenuItem>
-              <MenuItem value={30}>E-Commerce</MenuItem>
+              <MenuItem value={1}>In-house SEO</MenuItem>
+              <MenuItem value={2}>Agency</MenuItem>
+              <MenuItem value={3}>E-Commerce</MenuItem>
             </Select>
           </FormControl>
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
@@ -95,14 +80,15 @@ const StepTwo = ({ handleTabChange }) => {
             <Select
               labelId="seoLevelLabel"
               id="seoLevel"
-              value={seoLevel}
-              onChange={handleSeoLevelChange}
+              name='seoLevel'
+              value={formData.seoLevel}
+              onChange={(e) => handleInputChange(e)}
               label="seoLevel"
               sx={{ width: 142 }}
             >
-              <MenuItem value={10}>Beginner</MenuItem>
-              <MenuItem value={20}>Intermediate</MenuItem>
-              <MenuItem value={30}>Advanced</MenuItem>
+              <MenuItem value={1}>Beginner</MenuItem>
+              <MenuItem value={2}>Intermediate</MenuItem>
+              <MenuItem value={3}>Advanced</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -111,14 +97,15 @@ const StepTwo = ({ handleTabChange }) => {
           <Select
             labelId="seoToolsLabel"
             id="seoTools"
-            value={seoTools}
-            onChange={handleSeoToolsChange}
+            name='seoTools'
+            value={formData.seoTools}
+            onChange={(e) => handleInputChange(e)}
             label="seoTools"
             sx={{ width: 314 }}
           >
             <MenuItem value="">Please choose</MenuItem>
-            <MenuItem value={10}>Yes</MenuItem>
-            <MenuItem value={20}>No</MenuItem>
+            <MenuItem value={'yes'}>Yes</MenuItem>
+            <MenuItem value={'no'}>No</MenuItem>
           </Select>
         </FormControl>
         <Button

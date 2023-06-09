@@ -11,7 +11,7 @@ import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
 import styled from '@mui/material/styles/styled';
-import { createTheme } from '@mui/material/styles';
+// import { createTheme } from '@mui/material/styles';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,9 +46,25 @@ function a11yProps(index) {
 function SignUpForm() {
   const theme = useTheme();
   const [tabValue, setTabValue] = React.useState(0);
+  const [formData, setFormData] = React.useState({
+    email: '',
+    phoneNumber: '',
+    domain: '',
+    seoFor: '',
+    seoLevel: '',
+    seoTools: '',
+    firstName: '',
+    lastName: '',
+    companyName: '',
+  });
+
+  const handleInputChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+    console.log(formData);
+  };
 
   const handleTabChange = (event, newValue) => {
-    console.log(newValue );
+    console.log(newValue);
     setTabValue(newValue);
   };
 
@@ -121,13 +137,25 @@ function SignUpForm() {
         <StyledTab label="3" {...a11yProps(2)} />
       </StyledTabs>
       <TabPanel value={tabValue} index={0} dir={theme.direction}>
-        <StepOne handleTabChange={handleTabChange}/>
+        <StepOne
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleTabChange={handleTabChange}
+        />
       </TabPanel>
       <TabPanel value={tabValue} index={1} dir={theme.direction}>
-        <StepTwo handleTabChange={handleTabChange}/>
+        <StepTwo
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleTabChange={handleTabChange}
+        />
       </TabPanel>
       <TabPanel value={tabValue} index={2} dir={theme.direction}>
-        <StepThree />
+        <StepThree
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleTabChange={handleTabChange}
+        />
       </TabPanel>
     </Container>
   );
