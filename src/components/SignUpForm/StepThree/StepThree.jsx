@@ -23,11 +23,11 @@ const StepThree = ({ formData, handleInputChange }) => {
     }
   }
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     axios
      .post(
-         'http://localhost:8000/tran',
-         data,
+        'https://suite.xovi.net/spa/user/register',
+        formData,
       )
      .then(response => {console.log(response.data)})
      .catch(error => {console.log(error.data)});
