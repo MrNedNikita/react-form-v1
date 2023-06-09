@@ -56,10 +56,6 @@ const StepThree = ({ formData, handleInputChange }) => {
               marginRight: 4,
               "& label.Mui-focused": {
                 transformOrigin: "center",
-                color: "orange",
-              },
-              "& .Mui-focused:after": {
-                borderBottom: "2px solid orange",
               },
             }}
           />
@@ -76,10 +72,6 @@ const StepThree = ({ formData, handleInputChange }) => {
               width: 142,
               "& label.Mui-focused": {
                 transformOrigin: "center",
-                color: "orange",
-              },
-              "& .Mui-focused:after": {
-                borderBottom: "2px solid orange",
               },
             }}
           />
@@ -100,10 +92,6 @@ const StepThree = ({ formData, handleInputChange }) => {
             margin: 2,
             "& label.Mui-focused": {
               transformOrigin: "center",
-              color: "orange",
-            },
-            "& .Mui-focused:after": {
-              borderBottom: "2px solid orange",
             },
           }}
         />

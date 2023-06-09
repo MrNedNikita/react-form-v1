@@ -62,10 +62,6 @@ const StepOne = ({ formData, handleInputChange, handleTabChange }) => {
             },
             "& label.Mui-focused": {
               transformOrigin: "center",
-              color: "orange",
-            },
-            "& .Mui-focused:after": {
-              borderBottom: "2px solid orange",
             },
           }}
         />
