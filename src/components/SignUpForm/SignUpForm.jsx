@@ -11,7 +11,6 @@ import StepOne from "./StepOne/StepOne";
 import StepTwo from "./StepTwo/StepTwo";
 import StepThree from "./StepThree/StepThree";
 import styled from "@mui/material/styles/styled";
-// import { createTheme } from '@mui/material/styles';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
