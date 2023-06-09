@@ -57,6 +57,12 @@ function SignUpForm() {
     companyName: "",
   });
 
+  const addData = (data) => {
+    console.log('addData:', data)
+    setFormData({ ...formData, ...data });
+    console.log('formData::', formData);
+  };
+
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     console.log(formData);
@@ -139,6 +145,7 @@ function SignUpForm() {
       </StyledTabs>
       <TabPanel value={tabValue} index={0} dir={theme.direction}>
         <StepOne
+          addData={addData}
           formData={formData}
           handleInputChange={handleInputChange}
           handleTabChange={handleTabChange}
@@ -146,6 +153,7 @@ function SignUpForm() {
       </TabPanel>
       <TabPanel value={tabValue} index={1} dir={theme.direction}>
         <StepTwo
+          addData={addData}
           formData={formData}
           handleInputChange={handleInputChange}
           handleTabChange={handleTabChange}
@@ -153,6 +161,7 @@ function SignUpForm() {
       </TabPanel>
       <TabPanel value={tabValue} index={2} dir={theme.direction}>
         <StepThree
+          addData={addData}
           formData={formData}
           handleInputChange={handleInputChange}
           handleTabChange={handleTabChange}

@@ -8,35 +8,40 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-const StepThree = ({ formData, handleInputChange }) => {
+const StepThree = ({ addData, formData, handleInputChange }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm();
 
-  const handleSubmitClick = () => {
-    try {
-      if (isValid) {
-        onSubmit();
-      } else {
-        toast.error("Please fill out all required fields.");
-      }
-    } catch (error) {
-      return;
-    }
-  };
+  // const handleSubmitClick = () => {
+  //   try {
+  //     if (isValid) {
+  //       onSubmit();
+  //     } else {
+  //       toast.error("Please fill out all required fields.");
+  //     }
+  //   } catch (error) {
+  //     return;
+  //   }
+  // };
 
   const onSubmit = (data) => {
-    axios
-      .post("https://suite.xovi.net/spa/user/register", formData)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error.data);
-      });
+    console.log("formDataStep3:::", data);
+    addData(data);
   };
+
+  // const onSubmit = (data) => {
+  //   axios
+  //     .post("https://suite.xovi.net/spa/user/register", formData)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.data);
+  //     });
+  // };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,14 +101,12 @@ const StepThree = ({ formData, handleInputChange }) => {
           }}
         />
         <div className={s.checkboxesContainer}>
-          {/* value={option.id} */}
           <FormControlLabel
             control={
               <Checkbox
                 name="tnc"
-                {...register("tnc", {
-                  required: "Please agree to the terms and conditions.",
-                })}
+                defaultValue={formData.tnc}
+                {...register("tnc")}
               />
             }
             label="I agree to the terms and conditions."
@@ -115,7 +118,13 @@ const StepThree = ({ formData, handleInputChange }) => {
             }}
           />
           <FormControlLabel
-            control={<Checkbox />}
+            control={
+              <Checkbox
+                name="receiveEmail"
+                defaultValue={formData.receiveEmail}
+                {...register("receiveEmail")}
+              />
+            }
             label="I agree to receive information about XOVI and its partners via email."
             sx={{
               "& .MuiFormControlLabel-label": {
@@ -129,7 +138,6 @@ const StepThree = ({ formData, handleInputChange }) => {
           className={s.button}
           variant="contained"
           type="submit"
-          onClick={handleSubmitClick}
           sx={{
             width: 145,
             borderRadius: 12,

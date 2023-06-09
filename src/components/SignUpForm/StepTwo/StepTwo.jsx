@@ -9,26 +9,28 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
-const StepTwo = ({ formData, handleInputChange, handleTabChange }) => {
+const StepTwo = ({ addData, formData, handleInputChange, handleTabChange }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm();
 
-  const handleSubmitClick = () => {
-    try {
-      if (isValid) {
-        onSubmit();
-      } else {
-        toast.error("Please fill out all required fields.");
-      }
-    } catch (error) {
-      return;
-    }
-  };
+  // const handleSubmitClick = () => {
+  //   try {
+  //     if (isValid) {
+  //       onSubmit();
+  //     } else {
+  //       toast.error("Please fill out all required fields.");
+  //     }
+  //   } catch (error) {
+  //     return;
+  //   }
+  // };
 
   const onSubmit = (data) => {
+    console.log('formDataStep2:::', data)
+    addData(data);
     handleTabChange("", 2);
   };
 
@@ -43,7 +45,6 @@ const StepTwo = ({ formData, handleInputChange, handleTabChange }) => {
           label="Domain (domain.com)"
           variant="standard"
           defaultValue={formData.domain}
-          onChange={(e) => handleInputChange(e)}
           {...register("domain", { required: "Domain is required." })}
           error={Boolean(errors.domain)}
           helperText={errors.domain?.message}
@@ -67,8 +68,8 @@ const StepTwo = ({ formData, handleInputChange, handleTabChange }) => {
               labelId="seoForLabel"
               id="seoFor"
               name="seoFor"
-              value={formData.seoFor}
-              onChange={(e) => handleInputChange(e)}
+              defaultValue={formData.seoFor}
+              {...register("seoFor")}
               label="seoFor"
               sx={{ width: 142 }}
             >
@@ -83,8 +84,8 @@ const StepTwo = ({ formData, handleInputChange, handleTabChange }) => {
               labelId="seoLevelLabel"
               id="seoLevel"
               name="seoLevel"
-              value={formData.seoLevel}
-              onChange={(e) => handleInputChange(e)}
+              defaultValue={formData.seoLevel}
+              {...register("seoLevel")}
               label="seoLevel"
               sx={{ width: 142 }}
             >
@@ -102,8 +103,8 @@ const StepTwo = ({ formData, handleInputChange, handleTabChange }) => {
             labelId="seoToolsLabel"
             id="seoTools"
             name="seoTools"
-            value={formData.seoTools}
-            onChange={(e) => handleInputChange(e)}
+            defaultValue={formData.seoTools}
+            {...register("seoTools")}
             label="seoTools"
             sx={{ width: 314 }}
           >
@@ -116,7 +117,6 @@ const StepTwo = ({ formData, handleInputChange, handleTabChange }) => {
           className={s.button}
           variant="contained"
           type="submit"
-          onClick={handleSubmitClick}
           sx={{
             width: 145,
             borderRadius: 12,

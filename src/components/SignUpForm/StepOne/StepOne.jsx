@@ -6,26 +6,28 @@ import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
-const StepOne = ({ formData, handleInputChange, handleTabChange }) => {
+const StepOne = ({ addData, formData, handleInputChange, handleTabChange }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm();
 
-  const handleSubmitClick = () => {
-    try {
-      if (isValid) {
-        onSubmit();
-      } else {
-        toast.error("Please fill out all required fields.");
-      }
-    } catch (error) {
-      return;
-    }
-  };
+  // const handleSubmitClick = () => {
+  //   try {
+  //     if (isValid) {
+  //       onSubmit();
+  //     } else {
+  //       toast.error("Please fill out all required fields.");
+  //     }
+  //   } catch (error) {
+  //     return;
+  //   }
+  // };
 
   const onSubmit = (data) => {
+    console.log("formData:::", data);
+    addData(data);
     handleTabChange("", 1);
   };
 
@@ -75,6 +77,7 @@ const StepOne = ({ formData, handleInputChange, handleTabChange }) => {
           type="number"
           defaultValue={formData.phoneNumber}
           onChange={(e) => handleInputChange(e)}
+          {...register("phoneNumber")}
           sx={{
             width: 314,
             "& .MuiInputBase-input": { textAlign: "center" },
@@ -111,7 +114,6 @@ const StepOne = ({ formData, handleInputChange, handleTabChange }) => {
           className={s.button}
           variant="contained"
           type="submit"
-          onClick={handleSubmitClick}
           sx={{
             width: 145,
             borderRadius: 12,
