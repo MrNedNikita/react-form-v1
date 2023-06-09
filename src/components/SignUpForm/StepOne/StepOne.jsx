@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
-const StepOne = ({ addData, formData, handleInputChange, handleTabChange }) => {
+const StepOne = ({ addData, formData, handleTabChange }) => {
   const {
     register,
     handleSubmit,
@@ -14,6 +14,7 @@ const StepOne = ({ addData, formData, handleInputChange, handleTabChange }) => {
   } = useForm();
 
   // const handleSubmitClick = () => {
+  //   console.log("click");
   //   try {
   //     if (isValid) {
   //       onSubmit();
@@ -43,7 +44,6 @@ const StepOne = ({ addData, formData, handleInputChange, handleTabChange }) => {
           variant="standard"
           type="text"
           defaultValue={formData.email}
-          onChange={(e) => handleInputChange(e)}
           {...register("email", {
             required: "Email is required.",
             pattern: {
@@ -76,7 +76,6 @@ const StepOne = ({ addData, formData, handleInputChange, handleTabChange }) => {
           variant="standard"
           type="number"
           defaultValue={formData.phoneNumber}
-          onChange={(e) => handleInputChange(e)}
           {...register("phoneNumber")}
           sx={{
             width: 314,

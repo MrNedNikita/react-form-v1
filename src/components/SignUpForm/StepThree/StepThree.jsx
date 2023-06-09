@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-const StepThree = ({ addData, formData, handleInputChange }) => {
+const StepThree = ({ addData, formData }) => {
   const {
     register,
     handleSubmit,

@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
-const StepTwo = ({ addData, formData, handleInputChange, handleTabChange }) => {
+const StepTwo = ({ addData, formData, handleTabChange }) => {
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ const StepTwo = ({ addData, formData, handleInputChange, handleTabChange }) => {
   // };
 
   const onSubmit = (data) => {
-    console.log('formDataStep2:::', data)
+    console.log("formDataStep2:::", data);
     addData(data);
     handleTabChange("", 2);
   };
@@ -45,7 +45,13 @@ const StepTwo = ({ addData, formData, handleInputChange, handleTabChange }) => {
           label="Domain (domain.com)"
           variant="standard"
           defaultValue={formData.domain}
-          {...register("domain", { required: "Domain is required." })}
+          {...register("domain", {
+            required: "Domain is required.",
+            pattern: {
+              value: /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/,
+              message: "Please enter a valid domain",
+            },
+          })}
           error={Boolean(errors.domain)}
           helperText={errors.domain?.message}
           sx={{
