@@ -38,12 +38,7 @@ const StepOne = ({ addData, formData, handleTabChange }) => {
         <span className={s.text}>
           Start your free 14 days trial - no cancellation required!
         </span>
-        <TextField
-          name="email"
-          label="Email Address"
-          variant="standard"
-          type="text"
-          defaultValue={formData.email}
+        {/* defaultValue={formData.email}
           {...register("email", {
             required: "Email is required.",
             pattern: {
@@ -51,7 +46,12 @@ const StepOne = ({ addData, formData, handleTabChange }) => {
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
               message: "Please enter a valid email",
             },
-          })}
+          })} */}
+        <TextField
+          name="email"
+          label="Email Address"
+          variant="standard"
+          type="text"
           error={Boolean(errors.email)}
           helperText={errors.email?.message}
           sx={{

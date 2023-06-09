@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from "./SignUpForm.module.css";
 import Container from "@mui/material/Container";
 import PropTypes from "prop-types";
@@ -11,6 +11,7 @@ import StepOne from "./StepOne/StepOne";
 import StepTwo from "./StepTwo/StepTwo";
 import StepThree from "./StepThree/StepThree";
 import styled from "@mui/material/styles/styled";
+import axios from "axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,9 +45,9 @@ function a11yProps(index) {
 
 function SignUpForm() {
   const theme = useTheme();
-  const [tabValue, setTabValue] = React.useState(0);
-  const [formData, setFormData] = React.useState({
-    email: "",
+  const [tabValue, setTabValue] = useState(0);
+  const [formData, setFormData] = useState({
+    // email: "",
     phoneNumber: "",
     domain: "",
     seoFor: "",
@@ -57,11 +58,25 @@ function SignUpForm() {
     companyName: "",
   });
 
+  useEffect(() => {
+    console.log("formData::", formData);
+  }, [formData]);
+
   const addData = (data) => {
-    setFormData({ ...formData, ...data });
-    console.log('formData::', formData);
+    setFormData((prevFormData) => ({ ...prevFormData, ...data }));
   };
 
+  const sendFormData = () => {
+    console.log("sendFormData::", formData);
+    axios
+      .post("https://suite.xovi.net/spa/user/register", formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
+  };
   // const handleInputChange = (event) => {
   //   setFormData({ ...formData, [event.target.name]: event.target.value });
   // };
@@ -160,6 +175,7 @@ function SignUpForm() {
           addData={addData}
           formData={formData}
           handleTabChange={handleTabChange}
+          sendFormData={sendFormData}
         />
       </TabPanel>
     </Container>

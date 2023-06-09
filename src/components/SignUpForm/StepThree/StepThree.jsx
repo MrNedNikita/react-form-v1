@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-const StepThree = ({ addData, formData }) => {
+const StepThree = ({ addData, formData, sendFormData }) => {
   const {
     register,
     handleSubmit,
@@ -30,6 +30,7 @@ const StepThree = ({ addData, formData }) => {
   const onSubmit = (data) => {
     console.log("formDataStep3:::", data);
     addData(data);
+    sendFormData();
   };
 
   // const onSubmit = (data) => {
