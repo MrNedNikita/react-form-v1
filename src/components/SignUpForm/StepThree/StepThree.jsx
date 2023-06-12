@@ -15,17 +15,17 @@ const StepThree = ({ addData, formData, sendFormData }) => {
     formState: { errors, isValid },
   } = useForm();
 
-  // const handleSubmitClick = () => {
-  //   try {
-  //     if (isValid) {
-  //       onSubmit();
-  //     } else {
-  //       toast.error("Please fill out all required fields.");
-  //     }
-  //   } catch (error) {
-  //     return;
-  //   }
-  // };
+  const handleSubmitClick = (data) => {
+    try {
+      if (isValid) {
+        onSubmit(data);
+      } else {
+        toast.error("Please fill out all required fields.");
+      }
+    } catch (error) {
+      return;
+    }
+  };
 
   const onSubmit = (data) => {
     console.log("formDataStep3:::", data);

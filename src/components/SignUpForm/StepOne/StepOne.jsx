@@ -13,18 +13,18 @@ const StepOne = ({ addData, formData, handleTabChange }) => {
     formState: { errors, isValid },
   } = useForm();
 
-  // const handleSubmitClick = () => {
-  //   console.log("click");
-  //   try {
-  //     if (isValid) {
-  //       onSubmit();
-  //     } else {
-  //       toast.error("Please fill out all required fields.");
-  //     }
-  //   } catch (error) {
-  //     return;
-  //   }
-  // };
+  const handleSubmitClick = () => {
+    console.log("click");
+    try {
+      if (isValid) {
+        onSubmit();
+      } else {
+        toast.error("Please fill out all required fields.");
+      }
+    } catch (error) {
+      return;
+    }
+  };
 
   const onSubmit = (data) => {
     console.log("formData:::", data);
@@ -38,15 +38,6 @@ const StepOne = ({ addData, formData, handleTabChange }) => {
         <span className={s.text}>
           Start your free 14 days trial - no cancellation required!
         </span>
-        {/* defaultValue={formData.email}
-          {...register("email", {
-            required: "Email is required.",
-            pattern: {
-              value:
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Please enter a valid email",
-            },
-          })} */}
         <TextField
           name="email"
           label="Email Address"
@@ -54,6 +45,15 @@ const StepOne = ({ addData, formData, handleTabChange }) => {
           type="text"
           error={Boolean(errors.email)}
           helperText={errors.email?.message}
+                  defaultValue={formData.email}
+          {...register("email", {
+            required: "Email is required.",
+            pattern: {
+              value:
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: "Please enter a valid email",
+            },
+          })}
           sx={{
             width: 314,
             "& .MuiInputBase-input": { textAlign: "center" },
