@@ -15,16 +15,11 @@ const StepThree = ({ addData, formData, sendFormData, submitRef }) => {
     formState: { errors, isValid },
   } = useForm();
 
-  const handleSubmitClick = (data) => {
-    try {
-      if (isValid) {
-        onSubmit(data);
-      } else {
-        toast.error("Please fill out all required fields.");
-      }
-    } catch (error) {
-      return;
+  const handleSubmitClick = () => {
+    if (!isValid) {
+      toast.error("Please fill out all required fields.");
     }
+    handleSubmit(onSubmit)();
   };
 
   const onSubmit = (data) => {
@@ -33,19 +28,8 @@ const StepThree = ({ addData, formData, sendFormData, submitRef }) => {
     sendFormData();
   };
 
-  // const onSubmit = (data) => {
-  //   axios
-  //     .post("https://suite.xovi.net/spa/user/register", formData)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.data);
-  //     });
-  // };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <div className={s.container}>
         <div>
           <TextField
@@ -138,7 +122,7 @@ const StepThree = ({ addData, formData, sendFormData, submitRef }) => {
         <Button
           className={s.button}
           variant="contained"
-          type="submit"
+          onClick={handleSubmitClick}
           ref={submitRef}
           sx={{
             width: 145,

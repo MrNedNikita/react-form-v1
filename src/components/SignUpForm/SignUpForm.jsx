@@ -12,6 +12,8 @@ import axios from "axios";
 import { StyledTab } from "./SignUpForm.css-in-js";
 import { StyledTabs } from "./SignUpForm.css-in-js";
 import { tab } from "@testing-library/user-event/dist/tab";
+import toast, { Toaster } from "react-hot-toast";
+
 
 
 function TabPanel(props) {
@@ -69,10 +71,11 @@ function SignUpForm() {
     axios
       .post("https://suite.xovi.net/spa/user/register", formData)
       .then((response) => {
-        console.log(response.data);
+        console.log('resp:::', response.data);
       })
       .catch((error) => {
-        console.log(error.data);
+        console.log('err::', error.message);
+        toast.error(error.message);
       });
   };
 
@@ -84,7 +87,7 @@ function SignUpForm() {
   };
 
   const handleClickOnSecondTab = () => {
-    (tabValue === 2) ? setTabValue(1) : submitRef.current.click();
+    (tabValue === 1 || tabValue === 2) ? setTabValue(1) : submitRef.current.click();
   };
 
   const handleClickOnThirdTab = () => {
@@ -141,6 +144,7 @@ function SignUpForm() {
           submitRef={submitRef}
         />
       </TabPanel>
+      <Toaster position="top-right" reverseOrder={false} />
     </Container>
   );
 }

@@ -16,17 +16,12 @@ const StepTwo = ({ addData, formData, handleTabChange, submitRef }) => {
     formState: { errors, isValid },
   } = useForm();
 
-  // const handleSubmitClick = () => {
-  //   try {
-  //     if (isValid) {
-  //       onSubmit();
-  //     } else {
-  //       toast.error("Please fill out all required fields.");
-  //     }
-  //   } catch (error) {
-  //     return;
-  //   }
-  // };
+  const handleSubmitClick = () => {
+    if (!isValid) {
+      toast.error("Please fill out all required fields.");
+    }
+    handleSubmit(onSubmit)();
+  };
 
   const onSubmit = (data) => {
     console.log("formDataStep2:::", data);
@@ -35,7 +30,7 @@ const StepTwo = ({ addData, formData, handleTabChange, submitRef }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <div className={s.container}>
         <span className={s.text}>
           What website would you like to analyze first?
@@ -122,7 +117,7 @@ const StepTwo = ({ addData, formData, handleTabChange, submitRef }) => {
         <Button
           className={s.button}
           variant="contained"
-          type="submit"
+          onClick={handleSubmitClick}
           ref={submitRef}
           sx={{
             width: 145,

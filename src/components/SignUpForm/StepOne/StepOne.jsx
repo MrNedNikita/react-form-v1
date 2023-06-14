@@ -13,18 +13,12 @@ const StepOne = ({ addData, formData, handleTabChange, submitRef }) => {
     formState: { errors, isValid },
   } = useForm();
 
-  // const handleSubmitClick = () => {
-  //   console.log("click");
-  //   try {
-  //     if (isValid) {
-  //       onSubmit();
-  //     } else {
-  //       toast.error("Please fill out all required fields.");
-  //     }
-  //   } catch (error) {
-  //     return;
-  //   }
-  // };
+  const handleSubmitClick = () => {
+    if (!isValid) {
+      toast.error("Please fill out all required fields.");
+    }
+    handleSubmit(onSubmit)();
+  };
 
   const onSubmit = (data) => {
     console.log("formData:::", data);
@@ -33,7 +27,7 @@ const StepOne = ({ addData, formData, handleTabChange, submitRef }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <Box className={s.container}>
         <span className={s.text}>
           Start your free 14 days trial - no cancellation required!
@@ -45,7 +39,7 @@ const StepOne = ({ addData, formData, handleTabChange, submitRef }) => {
           type="text"
           error={Boolean(errors.email)}
           helperText={errors.email?.message}
-                  defaultValue={formData.email}
+          defaultValue={formData.email}
           {...register("email", {
             required: "Email is required.",
             pattern: {
@@ -112,7 +106,7 @@ const StepOne = ({ addData, formData, handleTabChange, submitRef }) => {
         <Button
           className={s.button}
           variant="contained"
-          type="submit"
+          onClick={handleSubmitClick}
           ref={submitRef}
           sx={{
             width: 145,
