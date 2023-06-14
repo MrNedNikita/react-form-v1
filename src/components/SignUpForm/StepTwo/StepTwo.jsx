@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 
-const StepTwo = ({ addData, formData, handleTabChange }) => {
+const StepTwo = ({ addData, formData, handleTabChange, submitRef }) => {
   const {
     register,
     handleSubmit,
@@ -123,6 +123,7 @@ const StepTwo = ({ addData, formData, handleTabChange }) => {
           className={s.button}
           variant="contained"
           type="submit"
+          ref={submitRef}
           sx={{
             width: 145,
             borderRadius: 12,

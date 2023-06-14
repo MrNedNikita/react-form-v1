@@ -1,5 +1,6 @@
 import Tab from "@mui/material/Tab";
 import styled from "@mui/material/styles/styled";
+import Tabs from "@mui/material/Tabs";
 
 export const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   ({ theme }) => ({
@@ -35,3 +36,23 @@ export const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
     },
   })
 );
+
+export const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{
+      children: <span className="MuiTabs-indicatorSpan" />,
+    }}
+  />
+))({
+  display: "flex",
+  alignItems: "center",
+  "& .MuiTabs-flexContainer": {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  "& .MuiTabs-indicator": {
+    display: "none",
+  },
+});

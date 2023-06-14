@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 
-const StepThree = ({ addData, formData, sendFormData }) => {
+const StepThree = ({ addData, formData, sendFormData, submitRef }) => {
   const {
     register,
     handleSubmit,
@@ -139,6 +139,7 @@ const StepThree = ({ addData, formData, sendFormData }) => {
           className={s.button}
           variant="contained"
           type="submit"
+          ref={submitRef}
           sx={{
             width: 145,
             borderRadius: 12,
