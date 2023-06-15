@@ -6,7 +6,6 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
 
 const StepThree = ({ addData, formData, sendFormData, submitRef }) => {
   const {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import s from "./SignUpForm.module.css";
 import Container from "@mui/material/Container";
 import PropTypes from "prop-types";
@@ -11,7 +11,6 @@ import StepThree from "./StepThree/StepThree";
 import axios from "axios";
 import { StyledTab } from "./SignUpForm.css-in-js";
 import { StyledTabs } from "./SignUpForm.css-in-js";
-import { tab } from "@testing-library/user-event/dist/tab";
 import toast, { Toaster } from "react-hot-toast";
 
 
